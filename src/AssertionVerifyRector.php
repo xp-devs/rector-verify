@@ -51,7 +51,11 @@ class AssertionVerifyRector extends AbstractRector
         foreach (self::TWO_ARGS_METHODS_MAP as $assertion => $expectation) {
             if ($expr->name->name === $assertion) {
                 $expect = new Node\Expr\FuncCall(new Node\Name('expect'), [$expr->args[1]]);
-                $node->expr = new Node\Expr\MethodCall($expect, new Node\Identifier($expectation), [$expr->args[0]]);
+                $expectationArguments = [$expr->args[0]];
+                if (isset($expr->args[2])) {
+                    $expectationArguments[] = $expr->args[2];
+                }
+                $node->expr = new Node\Expr\MethodCall($expect, new Node\Identifier($expectation), $expectationArguments);
 
                 return $node;
             }
@@ -60,7 +64,12 @@ class AssertionVerifyRector extends AbstractRector
         foreach (self::ONE_ARG_METHODS_MAP as $assertion => $expectation) {
             if ($expr->name->name === $assertion) {
                 $expect = new Node\Expr\FuncCall(new Node\Name('expect'), [$expr->args[0]]);
-                $node->expr = new Node\Expr\MethodCall($expect, new Node\Identifier($expectation));
+                $expectationArguments = [];
+                if (isset($expr->args[1])) {
+                    $expectationArguments[] = $expr->args[1];
+                }
+
+                $node->expr = new Node\Expr\MethodCall($expect, new Node\Identifier($expectation), $expectationArguments);
 
                 return $node;
             }
