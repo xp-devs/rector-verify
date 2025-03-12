@@ -51,8 +51,58 @@ jobs:
           path: |
             vendor/
 
+  lint:
+    needs: "pre_install"
+    name: "Code Linting"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@2.32.0
+        with:
+          php-version: 8.4
+          tools: composer
+
+      - name: Restore dependencies
+        uses: actions/cache/restore@v4
+        with:
+          key: ${{ env.VENDOR_CACHE_KEY }}
+          fail-on-cache-miss: true
+          path: |
+            vendor/
+
+      - name: Run coding standards
+        run: composer lint:cs
+
+  stat_analysis:
+    needs: "pre_install"
+    name: "Static Analysis"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@2.32.0
+        with:
+          php-version: 8.4
+          tools: composer
+
+      - name: Restore dependencies
+        uses: actions/cache/restore@v4
+        with:
+          key: ${{ env.VENDOR_CACHE_KEY }}
+          fail-on-cache-miss: true
+          path: |
+            vendor/
+
+      - name: Run static analysis
+        run: composer lint:phpstan
+
   tests:
-    name: "PHPUnit tests"
+    name: "PHPUnit Tests"
     runs-on: "ubuntu-latest"
     needs: "pre_install"
     steps:
@@ -78,7 +128,7 @@ jobs:
 
   cleanup-cache:
     if: needs.pre_job.outputs.should_skip != 'true'
-    needs: [ "tests" ]
+    needs: [ "tests", "stat_analysis", "lint" ]
     runs-on: ubuntu-latest
     name: "Cleanup Cache"
     steps:

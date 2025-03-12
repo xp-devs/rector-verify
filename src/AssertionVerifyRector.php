@@ -1,15 +1,18 @@
 <?php
+
 declare(strict_types=1);
 
 namespace XpDevs\RectorVerify;
 
 use PhpParser\Node;
+use PHPStan\Analyser\MutatingScope;
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use Rector\Rector\AbstractRector;
 
 class AssertionVerifyRector extends AbstractRector
 {
-    const TWO_ARGS_METHODS_MAP = [
+    public const TWO_ARGS_METHODS_MAP = [
         'assertEquals' => 'toEqual',
         'assertNotEquals' => 'notToEqual',
         'assertSame' => 'toBe',
@@ -27,7 +30,7 @@ class AssertionVerifyRector extends AbstractRector
         'assertArrayNotHasKey' => 'arrayNotToHaveKey',
     ];
 
-    const ONE_ARG_METHODS_MAP = [
+    public const ONE_ARG_METHODS_MAP = [
         'assertTrue' => 'toBeTrue',
         'assertNotTrue' => 'notToBeTrue',
         'assertFalse' => 'toBeFalse',
@@ -71,8 +74,10 @@ class AssertionVerifyRector extends AbstractRector
      */
     public function refactor(Node $node)
     {
-        /** @var \ReflectionClass $reflClass */
-        $reflClass = $node->getAttribute('scope')->getClassReflection();
+        /** @var MutatingScope $scope */
+        $scope = $node->getAttribute('scope');
+        Assert::assertInstanceOf(MutatingScope::class, $scope);
+        $reflClass = $scope->getClassReflection();
 
         if (!$reflClass) {
             return $node;
@@ -89,8 +94,10 @@ class AssertionVerifyRector extends AbstractRector
             return $node;
         }
 
+        $exprNameIdentifier = $expr->name;
+        Assert::assertInstanceOf(Node\Identifier::class, $exprNameIdentifier);
         foreach (self::TWO_ARGS_METHODS_MAP as $assertion => $expectation) {
-            if ($expr->name->name === $assertion) {
+            if ($exprNameIdentifier->toString() === $assertion) {
                 $expect = new Node\Expr\FuncCall(new Node\Name('expect'), [$expr->args[1]]);
                 $expectationArguments = [$expr->args[0]];
                 if (isset($expr->args[2])) {
@@ -103,7 +110,7 @@ class AssertionVerifyRector extends AbstractRector
         }
 
         foreach (self::ONE_ARG_METHODS_MAP as $assertion => $expectation) {
-            if ($expr->name->name === $assertion) {
+            if ($exprNameIdentifier->toString() === $assertion) {
                 $expect = new Node\Expr\FuncCall(new Node\Name('expect'), [$expr->args[0]]);
                 $expectationArguments = [];
                 if (isset($expr->args[1])) {

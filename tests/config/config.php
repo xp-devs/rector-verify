@@ -1,8 +1,9 @@
 <?php
+
 declare(strict_types=1);
 
-use XpDevs\RectorVerify\AssertionVerifyRector;
 use Rector\Config\RectorConfig;
+use XpDevs\RectorVerify\AssertionVerifyRector;
 
 return RectorConfig::configure()
     ->withRules([

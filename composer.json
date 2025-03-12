@@ -3,12 +3,18 @@
   "description": "Rector refactoring to switch from PHPHunit assertions to Codeception Verify",
   "require": {
     "php": ">=8.0",
-    "rector/rector": "^2.0"
+    "rector/rector": "^2.0",
+    "webmozart/assert": "^1.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^11.0",
     "codeception/verify": "^3.0",
-    "symfony/finder": "^7.2"
+    "ergebnis/composer-normalize": "^2.45.0",
+    "phpstan/extension-installer": "^1.4",
+    "phpstan/phpstan": "^2.1",
+    "phpstan/phpstan-webmozart-assert": "^2.0",
+    "phpunit/phpunit": "^11.0",
+    "symfony/finder": "^7.2",
+    "symplify/easy-coding-standard": "^12.5"
   },
   "autoload": {
     "psr-4": {
@@ -20,7 +26,34 @@
       "Tests\\XpDevs\\RectorVerify\\": "tests"
     }
   },
+  "config": {
+    "allow-plugins": {
+      "ergebnis/composer-normalize": true,
+      "phpstan/extension-installer": true
+    }
+  },
   "scripts": {
+    "check": [
+      "@lint:cs-fix",
+      "@lint:cs",
+      "@lint:phpstan",
+      "@test"
+    ],
+    "lint": [
+      "@lint:cs",
+      "@lint:phpstan"
+    ],
+    "lint:cs": [
+      "@composer normalize --dry-run",
+      "@php vendor/bin/ecs check"
+    ],
+    "lint:cs-fix": [
+      "@composer normalize",
+      "@php vendor/bin/ecs check --fix"
+    ],
+    "lint:phpstan": [
+      "@php vendor/bin/phpstan analyse --level=max src tests"
+    ],
     "test": [
       "@php vendor/bin/phpunit --colors=never"
     ]
