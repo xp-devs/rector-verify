@@ -9,6 +9,11 @@ use Rector\Rector\AbstractRector;
 
 class AssertionVerifyRector extends AbstractRector
 {
+    const METHODS_MAP = [
+        'assertEquals' => 'toEqual',
+        'assertSame' => 'toBe',
+    ];
+
     public function getNodeTypes(): array
     {
         return [Node\Stmt\Expression::class];
@@ -34,9 +39,12 @@ class AssertionVerifyRector extends AbstractRector
             return $node;
         }
 
-        if ($expr->name->name === 'assertEquals') {
-            $expect = new Node\Expr\FuncCall(new Node\Name('expect'), [$expr->args[1]]);
-            $node->expr = new Node\Expr\MethodCall($expect, new Node\Identifier('toEqual'), [$expr->args[0]]);
+        foreach (self::METHODS_MAP as $assertion => $expectation) {
+            if ($expr->name->name === $assertion) {
+                $expect = new Node\Expr\FuncCall(new Node\Name('expect'), [$expr->args[1]]);
+                $node->expr = new Node\Expr\MethodCall($expect, new Node\Identifier($expectation), [$expr->args[0]]);
+                break;
+            }
         }
 
         return $node;
