@@ -33,6 +33,10 @@ class AssertionVerifyRector extends AbstractRector
         /** @var \ReflectionClass $reflClass */
         $reflClass = $node->getAttribute('scope')->getClassReflection();
 
+        if (!$reflClass) {
+            return $node;
+        }
+
         if (!$reflClass->isSubclassOf(TestCase::class)) {
             return $node;
         }
