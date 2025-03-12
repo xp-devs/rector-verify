@@ -1,6 +1,6 @@
 <?php
 
-namespace Package\Tests\Rector\MyFirstRector\Fixture;
+namespace Package\Tests\Fixture;
 
 class SomeClassTest
 {
@@ -16,7 +16,7 @@ class SomeClassTest
 -----
 <?php
 
-namespace Package\Tests\Rector\MyFirstRector\Fixture;
+namespace Package\Tests\Fixture;
 
 class SomeClassTest
 {
