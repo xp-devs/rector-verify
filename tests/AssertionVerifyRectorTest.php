@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Tests\XpDevs\RectorVerify;
@@ -17,7 +18,7 @@ class AssertionVerifyRectorTest extends AbstractRectorTestCase
 
     public static function provideData(): \Iterator
     {
-        $finder = (new Finder())->in(__DIR__.'/Fixture')->files()->name('*.php.inc')->sortByName();
+        $finder = (new Finder())->in(__DIR__ . '/Fixture')->files()->name('*.php.inc')->sortByName();
         foreach ($finder as $fileInfo) {
             $testCaseName = substr($fileInfo->getRelativePathname(), 0, -8);
             (yield $testCaseName => [$fileInfo->getRealPath()]);
