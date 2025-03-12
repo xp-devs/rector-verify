@@ -5,6 +5,7 @@ namespace Tests\XpDevs\RectorVerify;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use Rector\Testing\PHPUnit\AbstractRectorTestCase;
+use Symfony\Component\Finder\Finder;
 
 class AssertionVerifyRectorTest extends AbstractRectorTestCase
 {
@@ -16,7 +17,11 @@ class AssertionVerifyRectorTest extends AbstractRectorTestCase
 
     public static function provideData(): \Iterator
     {
-        return self::yieldFilesFromDirectory(__DIR__ . '/Fixture');
+        $finder = (new Finder())->in(__DIR__.'/Fixture')->files()->name('*.php.inc')->sortByName();
+        foreach ($finder as $fileInfo) {
+            $testCaseName = substr($fileInfo->getRelativePathname(), 0, -8);
+            (yield $testCaseName => [$fileInfo->getRealPath()]);
+        }
     }
 
     public function provideConfigFilePath(): string

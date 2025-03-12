@@ -1,6 +1,6 @@
 <?php
 
-namespace Package\Tests\Rector\MyFirstRector\Fixture;
+namespace Package\Tests\Fixture;
 
 use PHPUnit\Framework\TestCase;
 
@@ -17,7 +17,7 @@ class SomeClassTest extends TestCase
 -----
 <?php
 
-namespace Package\Tests\Rector\MyFirstRector\Fixture;
+namespace Package\Tests\Fixture;
 
 use PHPUnit\Framework\TestCase;
 
