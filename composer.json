@@ -1,6 +1,6 @@
 {
   "name": "xp-devs/rector-verify",
-  "description": "Rector refactoring to switch from PHPHunit assertions to Codeception Verify",
+  "description": "Rector refactoring to migrate from PHPHunit assertions to Codeception/Verify expectations",
   "license": "MIT",
   "require": {
     "php": ">=8.0",
