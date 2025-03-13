@@ -18,5 +18,10 @@
     "psr-4": {
       "Tests\\XpDevs\\RectorVerify\\": "tests"
     }
+  },
+  "scripts": {
+    "test": [
+      "@php vendor/bin/phpunit --colors=never"
+    ]
   }
 }
