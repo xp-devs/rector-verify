@@ -77,6 +77,18 @@ class AssertionVerifyRector extends AbstractRector
         'assertDirectoryIsReadable' => 'directoryToBeReadable',
         'assertDirectoryIsWritable' => 'directoryToBeWritable',
         'assertDirectoryExists' => 'directoryToExist',
+        'assertFileIsNotReadable' => 'fileNotToBeReadable',
+        'assertFileIsNotWritable' => 'fileNotToBeWritable',
+        'assertFileDoesNotExist' => 'fileNotToExist',
+        'assertFileEquals' => 'fileToBeEqual',
+        'assertFileEqualsCanonicalizing' => 'fileToBeEqualCanonicalizing',
+        'assertFileEqualsIgnoringCase' => 'fileToBeEqualIgnoringCase',
+        'assertFileIsReadable' => 'fileToBeReadable',
+        'assertFileIsWritable' => 'fileToBeWritable',
+        'assertFileExists' => 'fileToExist',
+        'assertFileNotEquals' => 'fileToNotEqual',
+        'assertFileNotEqualsCanonicalizing' => 'fileToNotEqualCanonicalizing',
+        'assertFileNotEqualsIgnoringCase' => 'fileToNotEqualIgnoringCase',
     ];
 
     public function getNodeTypes(): array
