@@ -44,6 +44,12 @@ class AssertionVerifyRector extends AbstractRector
         'assertJsonStringNotEqualsJsonString' => 'jsonStringNotToEqualJsonString',
         'assertJsonStringEqualsJsonFile' => 'jsonStringToEqualJsonFile',
         'assertJsonStringEqualsJsonString' => 'jsonStringToEqualJsonString',
+        'assertXmlFileNotEqualsXmlFile' => 'xmlFileNotToEqualXmlFile',
+        'assertXmlFileEqualsXmlFile' => 'xmlFileToEqualXmlFile',
+        'assertXmlStringNotEqualsXmlFile' => 'xmlStringNotToEqualXmlFile',
+        'assertXmlStringNotEqualsXmlString' => 'xmlStringNotToEqualXmlString',
+        'assertXmlStringEqualsXmlFile' => 'xmlStringToEqualXmlFile',
+        'assertXmlStringEqualsXmlString' => 'xmlStringToEqualXmlString',
     ];
 
     public const ONE_ARG_METHODS_MAP = [
