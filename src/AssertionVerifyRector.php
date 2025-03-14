@@ -71,6 +71,10 @@ class AssertionVerifyRector extends AbstractRector
         'assertStringMatchesFormatFile' => 'stringToMatchFormatFile',
         'assertMatchesRegularExpression' => 'stringToMatchRegExp',
         'assertStringStartsWith' => 'stringToStartWith',
+        'assertNotEqualsCanonicalizing' => 'notToEqualCanonicalizing',
+        'assertNotEqualsIgnoringCase' => 'notToEqualIgnoringCase',
+        'assertEqualsCanonicalizing' => 'toEqualCanonicalizing',
+        'assertEqualsIgnoringCase' => 'toEqualIgnoringCase',
     ];
 
     public const ONE_ARG_METHODS_MAP = [
@@ -122,6 +126,11 @@ class AssertionVerifyRector extends AbstractRector
         'assertFileNotEquals' => 'fileToNotEqual',
         'assertFileNotEqualsCanonicalizing' => 'fileToNotEqualCanonicalizing',
         'assertFileNotEqualsIgnoringCase' => 'fileToNotEqualIgnoringCase',
+        'assertIsNotClosedResource' => 'notToBeClosedResource',
+        'assertIsClosedResource' => 'toBeClosedResource',
+        'assertFinite' => 'toBeFinite',
+        'assertInfinite' => 'toBeInfinite',
+        'assertNan' => 'toBeNan',
     ];
 
     public function getNodeTypes(): array
