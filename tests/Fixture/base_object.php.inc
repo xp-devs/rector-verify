@@ -26,8 +26,8 @@ class SomeClassTest extends TestCase
 {
     public function handlePasswordChange()
     {
-        expect(new \stdClass())->notToHaveProperty('a');
-        expect(new \stdClass())->toHaveProperty('b');
+        expect(new \stdClass())->baseObjectNotToHaveProperty('a');
+        expect(new \stdClass())->baseObjectToHaveProperty('b');
     }
 }
 
