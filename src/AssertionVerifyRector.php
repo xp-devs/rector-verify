@@ -38,6 +38,12 @@ class AssertionVerifyRector extends AbstractRector
         'assertSameSize' => 'arrayToHaveSameSizeAs',
         'assertObjectNotHasProperty' => 'baseObjectNotToHaveProperty',
         'assertObjectHasProperty' => 'baseObjectToHaveProperty',
+        'assertJsonFileNotEqualsJsonFile' => 'jsonFileNotToEqualJsonFile',
+        'assertJsonFileEqualsJsonFile' => 'jsonFileToEqualJsonFile',
+        'assertJsonStringNotEqualsJsonFile' => 'jsonStringNotToEqualJsonFile',
+        'assertJsonStringNotEqualsJsonString' => 'jsonStringNotToEqualJsonString',
+        'assertJsonStringEqualsJsonFile' => 'jsonStringToEqualJsonFile',
+        'assertJsonStringEqualsJsonString' => 'jsonStringToEqualJsonString',
     ];
 
     public const ONE_ARG_METHODS_MAP = [
