@@ -71,6 +71,12 @@ class AssertionVerifyRector extends AbstractRector
         'assertIsNotScalar' => 'notToBeScalar',
         'assertIsNotCallable' => 'notToBeCallable',
         'assertIsNotIterable' => 'notToBeIterable',
+        'assertDirectoryIsNotReadable' => 'directoryNotToBeReadable',
+        'assertDirectoryIsNotWritable' => 'directoryNotToBeWritable',
+        'assertDirectoryDoesNotExist' => 'directoryNotToExist',
+        'assertDirectoryIsReadable' => 'directoryToBeReadable',
+        'assertDirectoryIsWritable' => 'directoryToBeWritable',
+        'assertDirectoryExists' => 'directoryToExist',
     ];
 
     public function getNodeTypes(): array
