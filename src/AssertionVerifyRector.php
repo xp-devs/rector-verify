@@ -36,6 +36,8 @@ class AssertionVerifyRector extends AbstractRector
         'assertContainsEquals' => 'arrayToContainEqual',
         'assertContainsOnly' => 'arrayToContainOnly',
         'assertSameSize' => 'arrayToHaveSameSizeAs',
+        'assertObjectNotHasProperty' => 'notToHaveProperty',
+        'assertObjectHasProperty' => 'toHaveProperty',
     ];
 
     public const ONE_ARG_METHODS_MAP = [
