@@ -1,9 +1,11 @@
 # Rector for Codeception Verify
 
-This project lets you migrate from PHPUnit assertions to BDD style assertions [Codeception/Verify](https://github.com/Codeception/Verify) 
+This project lets you migrate from PHPUnit assertions to BDD style
+assertions [Codeception/Verify](https://github.com/Codeception/Verify)
 using automated refactoring powered by [Rector](https://github.com/rectorphp/rector)
 
 Code before:
+
 ```PHP
 class GenericEventTest extends TestCase
 {
@@ -40,6 +42,7 @@ class GenericEventTest extends TestCase
 ```
 
 Code after:
+
 ```PHP
 class GenericEventTest extends TestCase
 {
@@ -117,51 +120,123 @@ vendor/bin/rector process
 
 ## Supports expectations
 
-- toEqual
-- notToEqual
-- toBe
-- notToBe
-- toBeInstanceOf
-- notToBeInstanceOf
-- arrayToHaveCount
-- arrayNotToHaveCount
-- toBeGreaterThan
-- toBeGreaterThanOrEqualTo
-- toBeLessThan
-- toBeLessThanOrEqualTo
-- arrayToContainOnlyInstancesOf
-- arrayToHaveKey
-- arrayNotToHaveKey
-- toBeTrue
-- notToBeTrue
-- toBeFalse
-- notToBeFalse
-- toBeNull
-- notToBeNull
-- toBeEmpty
-- notToBeEmpty
-- toBeArray
-- toBeBool
-- toBeFloat
-- toBeInt
-- toBeNumeric
-- toBeObject
-- toBeResource
-- toBeString
-- toBeScalar
-- toBeCallable
-- toBeIterable
-- notToBeArray
-- notToBeBool
-- notToBeFloat
-- notToBeInt
-- notToBeNumeric
-- notToBeObject
-- notToBeResource
-- notToBeString
-- notToBeScalar
-- notToBeCallable
-- notToBeIterable
+| PHPUnit                                   | Expect                               |
+|-------------------------------------------|--------------------------------------|
+| assertEquals                              | toEqual                              |
+| assertNotEquals                           | notToEqual                           |
+| assertSame                                | toBe                                 |
+| assertNotSame                             | notToBe                              |
+| assertInstanceOf                          | toBeInstanceOf                       |
+| assertNotInstanceOf                       | notToBeInstanceOf                    |
+| assertCount                               | arrayToHaveCount                     |
+| assertNotCount                            | arrayNotToHaveCount                  |
+| assertGreaterThan                         | toBeGreaterThan                      |
+| assertGreaterThanOrEqual                  | toBeGreaterThanOrEqualTo             |
+| assertLessThan                            | toBeLessThan                         |
+| assertLessThanOrEqual                     | toBeLessThanOrEqualTo                |
+| assertContainsOnlyInstancesOf             | arrayToContainOnlyInstancesOf        |
+| assertArrayHasKey                         | arrayToHaveKey                       |
+| assertArrayNotHasKey                      | arrayNotToHaveKey                    |
+| assertNotContains                         | arrayNotToContain                    |
+| assertNotContainsEquals                   | arrayNotToContainEqual               |
+| assertNotContainsOnly                     | arrayNotToContainOnly                |
+| assertNotSameSize                         | arrayNotToHaveSameSizeAs             |
+| assertContains                            | arrayToContain                       |
+| assertContainsEquals                      | arrayToContainEqual                  |
+| assertContainsOnly                        | arrayToContainOnly                   |
+| assertSameSize                            | arrayToHaveSameSizeAs                |
+| assertObjectNotHasProperty                | baseObjectNotToHaveProperty          |
+| assertObjectHasProperty                   | baseObjectToHaveProperty             |
+| assertJsonFileNotEqualsJsonFile           | jsonFileNotToEqualJsonFile           |
+| assertJsonFileEqualsJsonFile              | jsonFileToEqualJsonFile              |
+| assertJsonStringNotEqualsJsonFile         | jsonStringNotToEqualJsonFile         |
+| assertJsonStringNotEqualsJsonString       | jsonStringNotToEqualJsonString       |
+| assertJsonStringEqualsJsonFile            | jsonStringToEqualJsonFile            |
+| assertJsonStringEqualsJsonString          | jsonStringToEqualJsonString          |
+| assertXmlFileNotEqualsXmlFile             | xmlFileNotToEqualXmlFile             |
+| assertXmlFileEqualsXmlFile                | xmlFileToEqualXmlFile                |
+| assertXmlStringNotEqualsXmlFile           | xmlStringNotToEqualXmlFile           |
+| assertXmlStringNotEqualsXmlString         | xmlStringNotToEqualXmlString         |
+| assertXmlStringEqualsXmlFile              | xmlStringToEqualXmlFile              |
+| assertXmlStringEqualsXmlString            | xmlStringToEqualXmlString            |
+| assertStringNotContainsString             | stringNotToContainString             |
+| assertStringNotContainsStringIgnoringCase | stringNotToContainStringIgnoringCase |
+| assertStringEndsNotWith                   | stringNotToEndWith                   |
+| assertStringNotEqualsFile                 | stringNotToEqualFile                 |
+| assertStringNotEqualsFileCanonicalizing   | stringNotToEqualFileCanonicalizing   |
+| assertStringNotEqualsFileIgnoringCase     | stringNotToEqualFileIgnoringCase     |
+| assertStringNotMatchesFormat              | stringNotToMatchFormat               |
+| assertStringNotMatchesFormatFile          | stringNotToMatchFormatFile           |
+| assertDoesNotMatchRegularExpression       | stringNotToMatchRegExp               |
+| assertStringStartsNotWith                 | stringNotToStartWith                 |
+| assertJson                                | stringToBeJson                       |
+| assertStringContainsString                | stringToContainString                |
+| assertStringContainsStringIgnoringCase    | stringToContainStringIgnoringCase    |
+| assertStringEndsWith                      | stringToEndWith                      |
+| assertStringEqualsFile                    | stringToEqualFile                    |
+| assertStringEqualsFileCanonicalizing      | stringToEqualFileCanonicalizing      |
+| assertStringEqualsFileIgnoringCase        | stringToEqualFileIgnoringCase        |
+| assertStringMatchesFormat                 | stringToMatchFormat                  |
+| assertStringMatchesFormatFile             | stringToMatchFormatFile              |
+| assertMatchesRegularExpression            | stringToMatchRegExp                  |
+| assertStringStartsWith                    | stringToStartWith                    |
+| assertNotEqualsCanonicalizing             | notToEqualCanonicalizing             |
+| assertNotEqualsIgnoringCase               | notToEqualIgnoringCase               |
+| assertEqualsCanonicalizing                | toEqualCanonicalizing                |
+| assertEqualsIgnoringCase                  | toEqualIgnoringCase                  |
+| assertTrue                                | toBeTrue                             |
+| assertNotTrue                             | notToBeTrue                          |
+| assertFalse                               | toBeFalse                            |
+| assertNotFalse                            | notToBeFalse                         |
+| assertNull                                | toBeNull                             |
+| assertNotNull                             | notToBeNull                          |
+| assertEmpty                               | toBeEmpty                            |
+| assertNotEmpty                            | notToBeEmpty                         |
+| assertIsArray                             | toBeArray                            |
+| assertIsBool                              | toBeBool                             |
+| assertIsFloat                             | toBeFloat                            |
+| assertIsInt                               | toBeInt                              |
+| assertIsNumeric                           | toBeNumeric                          |
+| assertIsObject                            | toBeObject                           |
+| assertIsResource                          | toBeResource                         |
+| assertIsString                            | toBeString                           |
+| assertIsScalar                            | toBeScalar                           |
+| assertIsCallable                          | toBeCallable                         |
+| assertIsIterable                          | toBeIterable                         |
+| assertIsNotArray                          | notToBeArray                         |
+| assertIsNotBool                           | notToBeBool                          |
+| assertIsNotFloat                          | notToBeFloat                         |
+| assertIsNotInt                            | notToBeInt                           |
+| assertIsNotNumeric                        | notToBeNumeric                       |
+| assertIsNotObject                         | notToBeObject                        |
+| assertIsNotResource                       | notToBeResource                      |
+| assertIsNotString                         | notToBeString                        |
+| assertIsNotScalar                         | notToBeScalar                        |
+| assertIsNotCallable                       | notToBeCallable                      |
+| assertIsNotIterable                       | notToBeIterable                      |
+| assertDirectoryIsNotReadable              | directoryNotToBeReadable             |
+| assertDirectoryIsNotWritable              | directoryNotToBeWritable             |
+| assertDirectoryDoesNotExist               | directoryNotToExist                  |
+| assertDirectoryIsReadable                 | directoryToBeReadable                |
+| assertDirectoryIsWritable                 | directoryToBeWritable                |
+| assertDirectoryExists                     | directoryToExist                     |
+| assertFileIsNotReadable                   | fileNotToBeReadable                  |
+| assertFileIsNotWritable                   | fileNotToBeWritable                  |
+| assertFileDoesNotExist                    | fileNotToExist                       |
+| assertFileEquals                          | fileToBeEqual                        |
+| assertFileEqualsCanonicalizing            | fileToBeEqualCanonicalizing          |
+| assertFileEqualsIgnoringCase              | fileToBeEqualIgnoringCase            |
+| assertFileIsReadable                      | fileToBeReadable                     |
+| assertFileIsWritable                      | fileToBeWritable                     |
+| assertFileExists                          | fileToExist                          |
+| assertFileNotEquals                       | fileToNotEqual                       |
+| assertFileNotEqualsCanonicalizing         | fileToNotEqualCanonicalizing         |
+| assertFileNotEqualsIgnoringCase           | fileToNotEqualIgnoringCase           |
+| assertIsNotClosedResource                 | notToBeClosedResource                |
+| assertIsClosedResource                    | toBeClosedResource                   |
+| assertFinite                              | toBeFinite                           |
+| assertInfinite                            | toBeInfinite                         |
+| assertNan                                 | toBeNan                              |
 
 ## License
 
