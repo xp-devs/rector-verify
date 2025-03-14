@@ -28,6 +28,14 @@ class AssertionVerifyRector extends AbstractRector
         'assertContainsOnlyInstancesOf' => 'arrayToContainOnlyInstancesOf',
         'assertArrayHasKey' => 'arrayToHaveKey',
         'assertArrayNotHasKey' => 'arrayNotToHaveKey',
+        'assertNotContains' => 'arrayNotToContain',
+        'assertNotContainsEquals' => 'arrayNotToContainEqual',
+        'assertNotContainsOnly' => 'arrayNotToContainOnly',
+        'assertNotSameSize' => 'arrayNotToHaveSameSizeAs',
+        'assertContains' => 'arrayToContain',
+        'assertContainsEquals' => 'arrayToContainEqual',
+        'assertContainsOnly' => 'arrayToContainOnly',
+        'assertSameSize' => 'arrayToHaveSameSizeAs',
     ];
 
     public const ONE_ARG_METHODS_MAP = [
