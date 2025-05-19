@@ -6,6 +6,7 @@ namespace XpDevs\RectorVerify;
 
 use PhpParser\Node;
 use PHPStan\Analyser\MutatingScope;
+use PHPStan\Type\ThisType;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use Rector\Rector\AbstractRector;
@@ -162,6 +163,13 @@ class AssertionVerifyRector extends AbstractRector
 
         if (!$isMethodCall) {
             return $node;
+        }
+
+        if ($expr instanceof Node\Expr\MethodCall) {
+            $callerType = $this->nodeTypeResolver->getType($expr->var);
+            if (!$callerType instanceof ThisType) {
+                return $node;
+            }
         }
 
         $exprNameIdentifier = $expr->name;
